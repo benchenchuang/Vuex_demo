@@ -16,6 +16,9 @@ const getters={
   }
 };
 const mutations={
+    getState(state,play){
+      state.count+=play.count
+    },
     increment(state){
       state.count++;
     },
@@ -23,9 +26,15 @@ const mutations={
     state.count--;
   }
 };
+const actions={
+  getcrement(context,id){
+    context.commit('getState',{count:id})
+  }
+}
 
 export default{
   state,
   getters,
-  mutations
+  mutations,
+  actions
 }

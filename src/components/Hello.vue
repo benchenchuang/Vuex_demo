@@ -4,9 +4,12 @@
     <p>
       <button @click="increment">+</button>
       <button @click="decrement">-</button>
+      <button @click="getState(10)">+10</button>
+      <button @click="getState(-10)">-10</button>
+      <button @click='getStore(5)'>+5</button>
     </p>
     <div>
-      <p v-for="todo in doneCount">{{todo.text}}</p>
+      <p v-for="todo in doneCount" :key='todo.name'>{{todo.text}}</p>
     </div>
   </div>
 </template>
@@ -31,9 +34,15 @@
 //      decrement(){
 //        this.$store.commit('decrement')
 //      }
+      getStore(num){
+        this.$store.dispatch('getcrement',num)
+      },
+      getState(num){
+        this.$store.commit('getState',{count:num})
+      },
       ...mapMutations([
         'increment',
-        'decrement'
+        'decrement',
       ])
     }
   }
